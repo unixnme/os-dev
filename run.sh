@@ -1,6 +1,5 @@
-nasm boot_sect.asm -f bin -o boot_sect.bin
-nasm hello.asm -f bin -o hello.bin
+input=$1
+output=${1:0:-4}.bin
 
-od -t x1 -A n boot_sect.bin
-echo
-od -t x1 -A n hello.bin
+nasm $input -f bin -o $output && qemu-system-x86_64 $output
+
